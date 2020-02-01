@@ -9,7 +9,7 @@ const Container = styled.div`
     div{
         background-color: #fff;
         padding 30px;
-        max-width:500px;
+        max-width:900px;
         width:100%;
         border-radius:10px
     }
@@ -56,6 +56,56 @@ const Container = styled.div`
         margin-bottom:10px;
         font-size:16px;
         color:#666;
+        align-content: stretch;
+        display: flex;
+    
+        button, button:hover{
+            background-color:white;
+            margin:0;
+            padding:0;
+            height:auto;
+            width:auto;
+            margin-right:20px;
+            align-self:start;
+            color:rgb(165, 245, 171)
+        }
+
+        button:hover{
+            color:rgb(18, 171, 29) !important;
+            transition: 0.3s ease-in;
+        }
+    }
+
+    p{
+        margin-right:20px;
+        font-size:21px;
+    }
+
+    .icons{
+        position:relative;
+
+        .delete:hover, .edit:hover{
+            color: rgb(146, 145, 145) !important;
+            transition: 0.3s ease-in;
+        }
+
+        .delete{
+            position: absolute;
+            right:0px;
+            top: 0px;
+            margin:0;
+            cursor:pointer;
+            color:#666;
+        }
+
+        .edit{
+            position: absolute;
+            right: 50px;
+            top: 0px;
+            margin:0;
+            cursor:pointer;
+            color:#666;
+        }
     }
 `;
 
