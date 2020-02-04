@@ -23,14 +23,14 @@ Download the project. Use MongoDB and create the **.env** file to configure the 
 ```bash
 MONGO_URL: string connection
 ```
-To install the dependencies and run ** Server ** (development mode) execute:
+To install the dependencies and run **server** (development mode) execute:
 ```bash
 yarn install
 yarn dev
 ```
 
 ### Frontend
-To start ** Frontend ** using React use the commands:
+To start **Frontend** using React use the commands:
 ```bash
 yarn install
 yarn start
@@ -42,7 +42,7 @@ To test the To Do List API, download and install [Insomnia] (https://insomnia.re
 
 ## How to contribute
 - First leave a ⭐!
-- Fork the repositories in production as they are updated: <a href="https://github.com/guilhermeorcezi/todolist">;
+- Fork the repositories in production as they are updated: <a href="https://github.com/guilhermeorcezi/todolist"> MonoRepo </a>;
 - Create a branch with your feature: `git checkout -b my-feature`;
 - Commit your changes: `git commit -m 'feat: My new feature'`;
 - Push to your branch: `git push origin my-feature`.
