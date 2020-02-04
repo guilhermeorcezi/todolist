@@ -17,7 +17,7 @@ const Container = styled.div`
     form{
         display:flex;
         flex-direction:row;
-        margin-bottom:20px;
+        margin-bottom:40px;
     }
 
     input{
