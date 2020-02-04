@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./github_files/todolist.png alt=To Do List" width="700">
+  <img src="./github_files/todolist.png" alt="To Do List" width="700">
 <br>
 To Do List
 </h1>
@@ -42,7 +42,7 @@ To test the To Do List API, download and install [Insomnia] (https://insomnia.re
 
 ## How to contribute
 - First leave a ⭐!
-- Fork the repositories in production as they are updated: <a href="https://github.com/guilhermeorcezi/todolist"> MonoRepo </a>;
+- Fork the repositories in production as they are updated: <a href="https://github.com/guilhermeorcezi/todolist"> MonoRepo;</a>
 - Create a branch with your feature: `git checkout -b my-feature`;
 - Commit your changes: `git commit -m 'feat: My new feature'`;
 - Push to your branch: `git push origin my-feature`.
