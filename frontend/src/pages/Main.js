@@ -44,6 +44,8 @@ export default function Main() {
 						.some((todo) => todo._id === editModeState.todo._id)
 				) {
 					await api.put(`/todos/update/${editModeState.todo._id}`, { content });
+					setContent('');
+					setEditModeState({ editMode: false, todo: {} });
 				}
 			}
 		} else {
