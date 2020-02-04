@@ -67,7 +67,8 @@ const Container = styled.div`
             width:auto;
             margin-right:20px;
             align-self:start;
-            color:rgb(165, 245, 171)
+            color:rgb(165, 245, 171);
+            cursor:pointer;
         }
 
         button:hover{
@@ -79,6 +80,15 @@ const Container = styled.div`
     p{
         margin-right:20px;
         font-size:21px;
+        width:100%;
+    }
+
+    .p-done{
+        text-decoration: line-through;
+    }
+
+    .button-done{
+        color:rgb(18, 171, 29);
     }
 
     .icons{
@@ -91,7 +101,7 @@ const Container = styled.div`
 
         .delete{
             position: absolute;
-            right:0px;
+            right:25px;
             top: 0px;
             margin:0;
             cursor:pointer;
@@ -100,7 +110,7 @@ const Container = styled.div`
 
         .edit{
             position: absolute;
-            right: 50px;
+            right: 70px;
             top: 0px;
             margin:0;
             cursor:pointer;

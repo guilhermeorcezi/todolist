@@ -18,6 +18,14 @@ module.exports = {
 		return res.json(todos);
 	},
 
+	async read(req, res) {
+		const { id } = req.params;
+
+		const todo = await Todo.findById(id);
+
+		return res.json(todo);
+	},
+
 	async destroy(req, res) {
 		const { id } = req.params;
 
@@ -37,5 +45,17 @@ module.exports = {
 		});
 
 		return res.json(newTodo);
+	},
+
+	async updateStatus(req, res) {
+		const { id } = req.params;
+
+		const todo = await Todo.findById(id);
+
+		const newTodo = await Todo.updateOne(todo, {
+			status: 0
+		});
+
+		return res.json({newTodo});
 	}
 };

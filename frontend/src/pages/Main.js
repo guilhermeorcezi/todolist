@@ -9,8 +9,10 @@ import handleError from './utils/Error';
 export default function Main() {
 	const [content, setContent] = useState([]);
 	const [todo, setTodo] = useState([]);
-	const editModeState = useState({editMode:false, todo:{}})
-	const [{editMode}] = editModeState();
+	const [editModeState, setEditModeState] = useState({
+		editMode: false,
+		todo: {}
+	});
 
 	useEffect(() => {
 		async function loadTodo() {
@@ -18,23 +20,46 @@ export default function Main() {
 			setTodo(response.data);
 		}
 		loadTodo();
-	}, []);
+	}, [todo]);
+
+	useEffect(() => {
+		if (editModeState.editMode) setContent(editModeState.todo.content);
+	}, [editModeState.editMode, editModeState.todo]);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		if (
-			todo
-				.map((todo) => todo.content.toLowerCase())
-				.some((todo) => todo === content.toLowerCase())
-		) {
-			setContent('');
-			handleError();
+		if (editModeState.editMode) {
+			if (
+				todo
+					.map((todo) => todo.content.toLowerCase())
+					.some((todo) => todo === content.toLowerCase())
+			) {
+				setContent('');
+				handleError();
+			} else {
+				if (
+					todo
+						.map((todo) => todo)
+						.some((todo) => todo._id === editModeState.todo._id)
+				) {
+					await api.put(`/todos/update/${editModeState.todo._id}`, { content });
+				}
+			}
 		} else {
-			const response = await api.post('/todos/create', { content });
-			setTodo([...todo, response.data]);
+			if (
+				todo
+					.map((todo) => todo.content.toLowerCase())
+					.some((todo) => todo === content.toLowerCase())
+			) {
+				setContent('');
+				handleError();
+			} else {
+				const response = await api.post('/todos/create', { content });
+				setTodo([...todo, response.data]);
 
-			setContent('');
+				setContent('');
+			}
 		}
 	}
 
@@ -44,8 +69,15 @@ export default function Main() {
 		setTodo(todo.filter((todo) => todo._id !== id));
 	}
 
-	async function handleEdit(){
-		
+	function handleEdit(todo) {
+		setEditModeState({
+			editMode: todo !== editModeState.todo ? true : false,
+			todo
+		});
+	}
+
+	async function handleChecked(id) {
+		await api.put(`/todos/done/${id}`);
 	}
 
 	return (
@@ -65,19 +97,28 @@ export default function Main() {
 							onChange={(e) => setContent(e.target.value)}
 						/>
 						<button>
-							<FaPlus color="#FFF" size={14} />
+							{editModeState.editMode ? (
+								<FaCheck color="#FFF" size={14} />
+							) : (
+								<FaPlus color="#FFF" size={14} />
+							)}
 						</button>
 					</form>
 
 					<ul>
 						{todo.map((item) => (
 							<li key={item._id}>
-								<button>
-									<FaCheck size={21} />
+								<button onClick={(e) => handleChecked(item._id)}>
+									<FaCheck
+										className={item.status === 0 ? 'button-done' : ''}
+										size={21}
+									/>
 								</button>
-								<p>{item.content}</p>
-								<div onClick={(e) => handleEdit(item._id)} className="icons">
-									<button className="edit">
+								<p className={item.status === 0 ? 'p-done' : ''}>
+									{item.content}
+								</p>
+								<div className="icons">
+									<button onClick={(e) => handleEdit(item)} className="edit">
 										<FaPen size={18} />
 									</button>
 									<button
