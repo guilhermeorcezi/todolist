@@ -7,8 +7,7 @@ export const TodoListContext = createContext();
 const TodoListContextProvider = (props) => {
 	const [todo, setTodo] = useState([]);
 	const [editModeState, setEditModeState] = useState({
-		editMode: false,
-		todo: {}
+		editMode: false
 	});
 
 	const [editTodo, setEditTodo] = useState(null);
